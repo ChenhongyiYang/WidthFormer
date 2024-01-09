@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="s2139448@127.0.0.1:6500 password (16)" createEmptyFolders="true" confirmBeforeUploading="false">
+    <option name="confirmBeforeUploading" value="false" />
+    <serverData>
+      <paths name="s2139448@127.0.0.1:6500 password (16)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/s2139448/projects/stream_petr" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
