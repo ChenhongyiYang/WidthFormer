@@ -6,6 +6,4 @@ Please refer to the original [StreamPETR](https://github.com/exiawsh/StreamPETR)
 
 ## Configs
 
-Please find all configs under [work_configs/local_exps](https://github.com/ChenhongyiYang/WidthFormer/tree/main/StreamPETR/work_configs/local_exps/).
-
-## 
+Please find all configs under [work_configs/local_exps](https://github.com/ChenhongyiYang/WidthFormer/tree/master/StreamPETR/work_configs/local_exps/).
