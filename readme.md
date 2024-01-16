@@ -7,7 +7,7 @@ This repository contains the official PyTorch implementation of our paper:
 ## Usage
 
 ### Environment Setup
-Our codebase is built upon the BEVDet (v1) and StreamPETR codebases. Please refer to their original repos for instractions about setting up datsets and environments. 
+Our codebase is built upon the BEVDet (v1) and StreamPETR codebases. Please refer to their original repos for instructions about setting up datsets and environments. 
 
 ## Citation
 ```
