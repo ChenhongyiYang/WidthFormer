@@ -6,4 +6,4 @@ Our codebase is based on [BEVDet v1.0](https://github.com/HuangJunJie2017/BEVDet
 
 ## Configs
 
-Please find all configs under [work_configs/widthformer](https://github.com/ChenhongyiYang/WidthFormer/tree/master/WidthFormer/work_configs/widthformer/).
+Please find all configs under [work_configs/widthformer](https://github.com/ChenhongyiYang/WidthFormer/tree/master/WidthFormer/BEVDet/work_configs/widthformer/).
