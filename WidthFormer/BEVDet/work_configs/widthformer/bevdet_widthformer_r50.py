@@ -76,7 +76,7 @@ model = dict(
         type='FCOSAuxFlattenHeadDev',
         num_classes=10,
         in_channels=embed_dims,
-        feat_channels=256,
+        feat_channels=128,
         stacked_convs=2,
         n_shared_convs=1,
         loss_cls=dict(type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0),
@@ -85,12 +85,12 @@ model = dict(
         loss_height=dict(type='CrossEntropyLoss', loss_weight=1.0),
         loss_bbox=dict(type='SmoothL1Loss', beta=1.0 / 9.0, loss_weight=1.0),
         loss_centerness=dict(type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0),
-        cls_branch=(256,),
+        cls_branch=(128,),
         reg_branch=(
-                (256,),  # delta_x
-                (256,),  # depth
-                (256,),  # height
-                (256,),  # box
+                (128,),  # delta_x
+                (128,),  # depth
+                (128,),  # height
+                (128,),  # box
         ),
         centerness_branch=(64,),
         conv_cfg=dict(type='Conv1d'),
