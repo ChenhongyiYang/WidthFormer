@@ -27,6 +27,46 @@ scale_factor = 8
 expand = scale_factor ** 2
 
 
+class CFFN(BaseModule):
+    def __init__(self,
+                 embed_dims=256,
+                 feedforward_channels=1024,
+                 num_fcs=2,
+                 add_identity=True,
+                 init_cfg=None,
+                 **kwargs):
+        super(CFFN, self).__init__(init_cfg)
+        assert num_fcs >= 2, 'num_fcs should be no less ' \
+            f'than 2. got {num_fcs}.'
+        self.embed_dims = embed_dims
+        self.feedforward_channels = feedforward_channels
+        self.num_fcs = embed_dims
+
+        layers = []
+        in_channels = embed_dims
+        for _ in range(num_fcs - 1):
+            layers.append(
+                nn.Sequential(
+                    nn.Conv2d(in_channels, feedforward_channels, (3,3), (1,1), (1,1), bias=False),
+                    nn.BatchNorm2d(feedforward_channels),
+                    nn.ReLU(inplace=True))
+                )
+            in_channels = feedforward_channels
+        layers.append(nn.Conv2d(feedforward_channels, embed_dims, (1,1), (1,1)))
+        self.layers = nn.Sequential(*layers)
+        self.add_identity = add_identity
+
+    def forward(self, x, identity=None):
+        """Forward function for `FFN`.
+        The function would add x to the output tensor if residue is None.
+        """
+        out = self.layers(x)
+        if not self.add_identity:
+            return out
+        if identity is None:
+            identity = x
+        return identity + out
+    
 class LayerNorm(nn.Module):
     r""" LayerNorm that supports two data formats: channels_last (default) or channels_first.
     The ordering of the dimensions in the inputs. channels_last corresponds to inputs with
@@ -334,7 +374,11 @@ class BasicCrossAttnLayer(nn.Module):
                 self.ffn = FFN(**_ffn_cfgs_custom)
                 self.ffn_norm = build_norm_layer(norm_cfg, embed_dims)[1]
             else:
-                raise NotImplementedError
+                cffn_version = _ffn_cfg.get('cffn_version', 'v1')
+                if cffn_version == 'v1':
+                    self.ffn = CFFN(**_ffn_cfgs_custom)
+                else:
+                    raise NotImplementedError
                 self.ffn_norm = None
         else:
             self.ffn, self.ffn_norm = None, None
@@ -583,7 +627,11 @@ class BasicSingleHeadSemanticAugAttnLayer(nn.Module):
                 self.ffn = FFN(**_ffn_cfgs_custom)
                 self.ffn_norm = build_norm_layer(norm_cfg, embed_dims)[1]
             else:
-                raise NotImplementedError
+                cffn_version = _ffn_cfg.get('cffn_version', 'v1')
+                if cffn_version == 'v1':
+                    self.ffn = CFFN(**_ffn_cfgs_custom)
+                else:
+                    raise NotImplementedError
                 self.ffn_norm = None
         else:
             self.ffn, self.ffn_norm = None, None
