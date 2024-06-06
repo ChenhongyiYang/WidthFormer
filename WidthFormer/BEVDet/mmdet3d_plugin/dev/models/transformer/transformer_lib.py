@@ -583,17 +583,7 @@ class BasicSingleHeadSemanticAugAttnLayer(nn.Module):
                 self.ffn = FFN(**_ffn_cfgs_custom)
                 self.ffn_norm = build_norm_layer(norm_cfg, embed_dims)[1]
             else:
-                cffn_version = _ffn_cfg.get('cffn_version', 'v1')
-                if cffn_version == 'v1':
-                    self.ffn = CFFN(**_ffn_cfgs_custom)
-                elif cffn_version == 'v2':
-                    self.ffn = CFFN_v2(**_ffn_cfgs_custom)
-                elif cffn_version == 'cmt':
-                    self.ffn = CFFN_CMT(**_ffn_cfgs_custom)
-                elif cffn_version == 'convnext':
-                    self.ffn = CFFN_ConvNext(**_ffn_cfgs_custom)
-                else:
-                    raise NotImplementedError
+                raise NotImplementedError
                 self.ffn_norm = None
         else:
             self.ffn, self.ffn_norm = None, None
