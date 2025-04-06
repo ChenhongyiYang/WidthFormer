@@ -11,10 +11,12 @@ Our codebase is built upon the BEVDet (v1) and StreamPETR codebases. Please refe
 
 ## Citation
 ```
-@article{yang2024widthformer,
-  title={WidthFormer: Toward Efficient Transformer-based BEV View Transformation},
+@inproceedings{yang2024widthformer,
+  title={Widthformer: Toward efficient transformer-based bev view transformation},
   author={Yang, Chenhongyi and Lin, Tianwei and Huang, Lichao and Crowley, Elliot J},
-  journal={arXiv preprint arXiv:2401.03836},
-  year={2024}
+  booktitle={2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  pages={8457--8464},
+  year={2024},
+  organization={IEEE}
 }
 ```
